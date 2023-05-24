@@ -171,7 +171,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(765, 521);
+            ClientSize = new Size(767, 516);
             Controls.Add(btnGuncelle);
             Controls.Add(HayvanBilgileri);
             Controls.Add(lstHayvanOzellikleri);

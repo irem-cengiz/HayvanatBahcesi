@@ -8,8 +8,7 @@ namespace HayvanatBahcesiProjesii
     public partial class Form1 : Form
     {
         Altyapý.SoyutSýnflar.HayvanatBahcesi hayvanatBahcesi;
-        Hayvan guncellenecekHayvan;
-        
+        Hayvan guncellenecekHayvan; //global tanýmlanmasýnýn sebebi farklý metotlarda da eriþilebilmesi.
 
         public Form1()
         {
@@ -62,13 +61,12 @@ namespace HayvanatBahcesiProjesii
             //Güncellecek hayvaný seçtikten sonra, bilgilerini ekleme bölümünde görelim
 
 
-
             //comboboxta göster:
             Type tur = guncellenecekHayvan.GetType();
-            
+
             foreach (var item in cmbHayvanlar.Items)
             {
-                if(item.GetType() == tur) 
+                if (item.GetType() == tur)
                 {
                     aktarilanHayvan = (Hayvan)item;
                     break;
@@ -80,15 +78,11 @@ namespace HayvanatBahcesiProjesii
             TXTyAS.Text = guncellenecekHayvan.Yas.ToString();
 
 
-
             //cinsiyetini radiobuttonda göster
             if (guncellenecekHayvan.Cinsiyet == Cinsiyet.Erkek)
                 rbErkek.Checked = true;
             else
                 rbDisi.Checked = true;
-
-         
-
 
         }
         private void btnSÝL_Click(object sender, EventArgs e)
@@ -129,13 +123,24 @@ namespace HayvanatBahcesiProjesii
         {
             try
             {
-                Hayvan seciliHayvan = (Hayvan)(lstHayvanOzellikleri.SelectedItem);
-
-                if (seciliHayvan == null)
+                if( guncellenecekHayvan==null)
                 {
-                    MessageBox.Show("Lütfen günvellenecek hayvaný seçiniz:");
-                    
-                }           
+                    MessageBox.Show("Lütfen güncellenecek hayvaný seçiniz.");
+                    return;
+                }
+
+                //eðer güncellenecek hayvan varsa güncelle // güncelleme için ormal ekleme gibi yapýyoruz SADECE sonunda hayvan güncelle metodunu cagýrýyoruz.
+                //hayvangüncelle metodu eskisini cýkarýp yenisini ekle. böylece güncelleniyor.
+
+                Hayvan eklenenHayvan = (Hayvan)(lstHayvanOzellikleri.SelectedItem);
+                eklenenHayvan = (Hayvan)Activator.CreateInstance(eklenenHayvan.GetType());  //polimorfizm...
+                eklenenHayvan.Yas = Convert.ToInt32(TXTyAS.Text);
+                eklenenHayvan.Cinsiyet = rbErkek.Checked ? Altyapý.Enum.Cinsiyet.Erkek : Altyapý.Enum.Cinsiyet.Diþi;
+                eklenenHayvan.ComboboxHali = false;
+                hayvanatBahcesi.HayvanGuncelle(guncellenecekHayvan, eklenenHayvan);
+                MessageBox.Show("Hayvan güncellenmiþtir.");
+                Listele();
+               
 
             }
             catch (Exception ex)

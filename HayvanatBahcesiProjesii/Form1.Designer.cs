@@ -45,7 +45,7 @@
             // 
             // btnEkle
             // 
-            btnEkle.Location = new Point(423, 447);
+            btnEkle.Location = new Point(433, 447);
             btnEkle.Name = "btnEkle";
             btnEkle.Size = new Size(101, 40);
             btnEkle.TabIndex = 0;
@@ -56,7 +56,7 @@
             // btnSİL
             // 
             btnSİL.Enabled = false;
-            btnSİL.Location = new Point(637, 447);
+            btnSİL.Location = new Point(651, 447);
             btnSİL.Name = "btnSİL";
             btnSİL.Size = new Size(104, 40);
             btnSİL.TabIndex = 1;
@@ -159,7 +159,7 @@
             // 
             // btnGuncelle
             // 
-            btnGuncelle.Location = new Point(530, 447);
+            btnGuncelle.Location = new Point(544, 447);
             btnGuncelle.Name = "btnGuncelle";
             btnGuncelle.Size = new Size(101, 40);
             btnGuncelle.TabIndex = 10;

@@ -17,11 +17,11 @@ namespace HayvanatBahcesiProjesii
             hayvanatBahcesi = new Altyapý.SoyutSýnflar.HayvanatBahcesi();
 
             //comboboxa hayvan dolduralým
-            cmbHayvanlar.Items.Add("Seçiniz:");
+            cmbHayvanlar.Items.Add("Seçiniz:"); //0.indekste seçiniz var.
             cmbHayvanlar.Items.Add(new Kedi());
             cmbHayvanlar.Items.Add(new Balik());
             cmbHayvanlar.Items.Add(new Aslan());
-            cmbHayvanlar.SelectedIndex = 0;  //seçiniz ile baþlamasý için yazdýk.
+            cmbHayvanlar.SelectedIndex = 0;  //seçiniz ile baþlamasý için yazdýk.(0.indeks)
             Listele();
 
         }
@@ -43,10 +43,17 @@ namespace HayvanatBahcesiProjesii
                 eklenenHayvan.ComboboxHali = false;
                 btnSÝL.Enabled = true;
 
+                
+                hayvanatBahcesi.HayvanEkle(eklenenHayvan);  //hayvanatbahçesi clasýmýzda hayvanekle metodu var.
+                                                            //isme göre sýralar. cünkü listele metodu içinde orderby name yaptýk...
 
-                hayvanatBahcesi.HayvanEkle(eklenenHayvan);
                 Listele();
-                //isme göre sýralar.
+                //ekle metodu kullanmadan eklemek içinde:
+
+                //lstHayvanOzellikleri.Items.Add($"Tür: {eklenenHayvan.GetType().Name}, Yaþ: {eklenenHayvan.Yas}, Cinsiyet: {eklenenHayvan.Cinsiyet}");
+                //lstHayvanOzellikleri.Show();
+
+
             }
             catch (Exception ex)
             {
@@ -56,8 +63,8 @@ namespace HayvanatBahcesiProjesii
         }
         private void lstHayvanOzellikleri_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Hayvan aktarilanHayvan = new Kedi();
-            Hayvan guncellenecekHayvan = (Hayvan)(lstHayvanOzellikleri.SelectedItem);
+           
+            guncellenecekHayvan = (Hayvan)(lstHayvanOzellikleri.SelectedItem);
             //Güncellecek hayvaný seçtikten sonra, bilgilerini ekleme bölümünde görelim
 
 
@@ -68,11 +75,11 @@ namespace HayvanatBahcesiProjesii
             {
                 if (item.GetType() == tur)
                 {
-                    aktarilanHayvan = (Hayvan)item;
+                    cmbHayvanlar.SelectedItem = (Hayvan)item;
                     break;
                 }
             }
-            cmbHayvanlar.SelectedItem = aktarilanHayvan;
+         
 
             //yaþ textboxunda göster
             TXTyAS.Text = guncellenecekHayvan.Yas.ToString();
@@ -97,6 +104,9 @@ namespace HayvanatBahcesiProjesii
                     return;
                 }
                 hayvanatBahcesi.HayvanCikar(seciliHayvan);
+
+                //lstHayvanOzellikleri.Items.Remove(seciliHayvan);
+                //lstHayvanOzellikleri.Show();
 
                 Listele();
                 MessageBox.Show("Hayvan silinmiþtir.");
@@ -123,16 +133,16 @@ namespace HayvanatBahcesiProjesii
         {
             try
             {
-                if( guncellenecekHayvan==null)
+                if (guncellenecekHayvan == null)
                 {
                     MessageBox.Show("Lütfen güncellenecek hayvaný seçiniz.");
                     return;
                 }
 
-                //eðer güncellenecek hayvan varsa güncelle // güncelleme için ormal ekleme gibi yapýyoruz SADECE sonunda hayvan güncelle metodunu cagýrýyoruz.
+                //eðer güncellenecek hayvan varsa güncelle // güncelleme için normal ekleme gibi yapýyoruz SADECE sonunda hayvan güncelle metodunu cagýrýyoruz.
                 //hayvangüncelle metodu eskisini cýkarýp yenisini ekle. böylece güncelleniyor.
 
-                Hayvan eklenenHayvan = (Hayvan)(lstHayvanOzellikleri.SelectedItem);
+                Hayvan eklenenHayvan = (Hayvan)(cmbHayvanlar.SelectedItem);
                 eklenenHayvan = (Hayvan)Activator.CreateInstance(eklenenHayvan.GetType());  //polimorfizm...
                 eklenenHayvan.Yas = Convert.ToInt32(TXTyAS.Text);
                 eklenenHayvan.Cinsiyet = rbErkek.Checked ? Altyapý.Enum.Cinsiyet.Erkek : Altyapý.Enum.Cinsiyet.Diþi;
@@ -140,7 +150,7 @@ namespace HayvanatBahcesiProjesii
                 hayvanatBahcesi.HayvanGuncelle(guncellenecekHayvan, eklenenHayvan);
                 MessageBox.Show("Hayvan güncellenmiþtir.");
                 Listele();
-               
+
 
             }
             catch (Exception ex)

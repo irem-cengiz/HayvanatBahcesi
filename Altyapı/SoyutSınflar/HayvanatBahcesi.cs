@@ -15,18 +15,15 @@ namespace Altyapı.SoyutSınflar
         {
             Hayvanlar.Add(eklenecekHayvan);
         }
-
         public void HayvanCikar(Hayvan cikarilacakHayvan)
         {
             Hayvanlar.Remove(cikarilacakHayvan);
         }
-
         public void HayvanGuncelle(Hayvan guncellenecekHayvan,Hayvan guncelHayvan)
         {
             //int eskiHayvanIndex = Hayvanlar.IndexOf(guncellenecekHayvan);
             //Hayvanlar[eskiHayvanIndex] = guncelHayvan;
             //diğer yol:
-
             Hayvanlar.Remove(guncellenecekHayvan);
             Hayvanlar.Add(guncelHayvan);
         }

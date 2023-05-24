@@ -165,6 +165,7 @@
             btnGuncelle.TabIndex = 10;
             btnGuncelle.Text = "GÜNCELLE";
             btnGuncelle.UseVisualStyleBackColor = true;
+            btnGuncelle.Click += btnGuncelle_Click;
             // 
             // Form1
             // 

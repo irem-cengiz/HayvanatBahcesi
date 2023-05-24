@@ -1,3 +1,4 @@
+using Altyapý.Enum;
 using Altyapý.Sýnýflar;
 using Altyapý.SoyutSýnflar;
 using System.Security.Cryptography.X509Certificates;
@@ -7,6 +8,9 @@ namespace HayvanatBahcesiProjesii
     public partial class Form1 : Form
     {
         Altyapý.SoyutSýnflar.HayvanatBahcesi hayvanatBahcesi;
+        Hayvan guncellenecekHayvan;
+        
+
         public Form1()
         {
 
@@ -50,15 +54,43 @@ namespace HayvanatBahcesiProjesii
 
                 MessageBox.Show("Hata:" + ex.Message);
             }
-
         }
-
         private void lstHayvanOzellikleri_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Hayvan seciliHayvan = (Hayvan)(lstHayvanOzellikleri.SelectedItem);
-            MessageBox.Show(seciliHayvan.GetType().Name + "," + "Yaþý:" + seciliHayvan.Yas + " " + "Cinsiyet:" + seciliHayvan.Cinsiyet);
-        }
+            Hayvan aktarilanHayvan = new Kedi();
+            Hayvan guncellenecekHayvan = (Hayvan)(lstHayvanOzellikleri.SelectedItem);
+            //Güncellecek hayvaný seçtikten sonra, bilgilerini ekleme bölümünde görelim
 
+
+
+            //comboboxta göster:
+            Type tur = guncellenecekHayvan.GetType();
+            
+            foreach (var item in cmbHayvanlar.Items)
+            {
+                if(item.GetType() == tur) 
+                {
+                    aktarilanHayvan = (Hayvan)item;
+                    break;
+                }
+            }
+            cmbHayvanlar.SelectedItem = aktarilanHayvan;
+
+            //yaþ textboxunda göster
+            TXTyAS.Text = guncellenecekHayvan.Yas.ToString();
+
+
+
+            //cinsiyetini radiobuttonda göster
+            if (guncellenecekHayvan.Cinsiyet == Cinsiyet.Erkek)
+                rbErkek.Checked = true;
+            else
+                rbDisi.Checked = true;
+
+         
+
+
+        }
         private void btnSÝL_Click(object sender, EventArgs e)
         {
             try
@@ -84,7 +116,6 @@ namespace HayvanatBahcesiProjesii
 
                 MessageBox.Show("Hata:" + ex.Message);
             }
-
         }
 
         private void Listele()
@@ -93,7 +124,27 @@ namespace HayvanatBahcesiProjesii
 
             lstHayvanOzellikleri.Items.AddRange(hayvanatBahcesi.Hayvanlar.OrderBy(h => h.GetType().Name).ToArray());
         }
-    }
 
+        private void btnGuncelle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Hayvan seciliHayvan = (Hayvan)(lstHayvanOzellikleri.SelectedItem);
+
+                if (seciliHayvan == null)
+                {
+                    MessageBox.Show("Lütfen günvellenecek hayvaný seçiniz:");
+                    
+                }           
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Hata:" + ex.Message);
+            }
+
+        }
+    }
 
 }

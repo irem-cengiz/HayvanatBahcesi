@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Altyapı", "Altyapı\Altyapı.csproj", "{B1135B7C-FED7-42E8-937B-B505A40E6B29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HayvanatBahcesiProjesii", "HayvanatBahcesiProjesii\HayvanatBahcesiProjesii.csproj", "{594FCF9A-DA89-4E08-917F-306F2F9B9CDC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1135B7C-FED7-42E8-937B-B505A40E6B29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1135B7C-FED7-42E8-937B-B505A40E6B29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1135B7C-FED7-42E8-937B-B505A40E6B29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1135B7C-FED7-42E8-937B-B505A40E6B29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{594FCF9A-DA89-4E08-917F-306F2F9B9CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{594FCF9A-DA89-4E08-917F-306F2F9B9CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{594FCF9A-DA89-4E08-917F-306F2F9B9CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{594FCF9A-DA89-4E08-917F-306F2F9B9CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61FE4DF4-880A-4136-8EB7-79978D03C4CE}
+	EndGlobalSection
+EndGlobal
